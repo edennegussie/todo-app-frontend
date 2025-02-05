@@ -1,10 +1,11 @@
 export default function Tasks() {
-    return <div>
-        <h2>This is the list of tasks!</h2>
+    return <div class='text-center'>
+        <h2>ToDo lists</h2>
+        <p>This is the list of tasks!</p>
         <div>
-            <button> + Add a task</button>
+            <button class="bg-red text-red-900 "> + Add a task</button>
         </div>
-        <ul>
+        <ul className="">
             <li>
                 task 1
             </li>
