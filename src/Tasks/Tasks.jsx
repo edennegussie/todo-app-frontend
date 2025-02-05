@@ -31,7 +31,7 @@ export default function Tasks() {
         <div>
             {
                 data?.map((d) => {
-                    return <TaskItem title={d.title} description={d.description} duedate={d.duedate} status={d.status} />
+                    return <TaskItem key={d.id} task={d} />
                 })
             }
 
