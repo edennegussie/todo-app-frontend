@@ -1,3 +1,5 @@
+import TaskItem from "./TaskItem";
+
 export default function Tasks() {
     return <div class='text-center'>
         <h2>ToDo lists</h2>
@@ -6,12 +8,7 @@ export default function Tasks() {
             <button class="bg-red text-red-900 "> + Add a task</button>
         </div>
         <ul className="">
-            <li>
-                task 1
-            </li>
-            <li>
-                task 2
-            </li>
+            <TaskItem></TaskItem>
         </ul>
     </div>
 }
