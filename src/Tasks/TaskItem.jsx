@@ -1,3 +1,5 @@
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+
 export default function TaskItem({ task }) {
     console.log(task, task.duedate);
 
@@ -22,12 +24,12 @@ export default function TaskItem({ task }) {
                         <option value="IN_PROGRESS" className="text-blue-500">IN_PROGRESS</option>
                         <option value="COMPLETED" className="text-green-500">COMPLETED</option>
                     </select>
-                    <span className="space-x-3">
-                        <span className="cursor-pointer hover:text-blue-500">Edit</span>
-                        <span className="cursor-pointer hover:text-red-500">Delete</span>
+                    <span className="flex space-x-3">
+                        <FaEdit className="cursor-pointer  text-gray-500 hover:text-blue-500" />
+                        <FaTrashAlt className="cursor-pointer text-gray-500 hover:text-red-500" />
                     </span>
                 </div>
-                <div className="flex items-center space-x-2 w-full">
+                <div className="flex items-center space-x-2 w-full mt-2">
                     <span className="text-2xl">{task.title}</span>
                 </div>
             </div>
