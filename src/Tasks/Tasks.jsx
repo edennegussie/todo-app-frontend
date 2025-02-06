@@ -28,7 +28,7 @@ export default function Tasks() {
         <div className="mr-2 text-right" >Search...
             <button > + Add a task</button>
         </div>
-        <div>
+        <div className="flex flex-wrap justify-evenly gap-4 p-4 m-8">
             {
                 data?.map((d) => {
                     return <TaskItem key={d.id} task={d} />

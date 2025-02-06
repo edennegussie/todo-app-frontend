@@ -2,7 +2,7 @@ export default function TaskItem({ task }) {
     console.log(task, task.duedate);
 
     return (
-        <div className="bg-white shadow-md rounded-2xl p-4 w-full max-w-md border border-gray-200 min-h-64">
+        <div className="bg-white flex-grow shadow-md rounded-2xl p-4 w-full  border border-gray-200 min-h-72 min-w-96 max-w-96 ">
             {/* Header */}
             <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-2 ">
