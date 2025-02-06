@@ -1,7 +1,8 @@
+import { useState } from "react";
+
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 export default function TaskItem({ task }) {
-    console.log(task, task.duedate);
 
     return (
         <div className="bg-white flex-grow shadow-md rounded-2xl p-4 border border-gray-200 min-h-72 min-w-96 max-w-96 ">
@@ -20,18 +21,16 @@ export default function TaskItem({ task }) {
                                     : "#86EFAC" // Green for COMPLETED
                         }}
                     >
-                        <option value="TODO" className="text-orange-500">TODO</option>
-                        <option value="IN_PROGRESS" className="text-blue-500">IN_PROGRESS</option>
-                        <option value="COMPLETED" className="text-green-500">COMPLETED</option>
+                        <option value="TODO" className="bg-white">TODO</option>
+                        <option value="IN_PROGRESS" className="bg-white">IN_PROGRESS</option>
+                        <option value="COMPLETED" className="bg-white ">COMPLETED</option>
                     </select>
                     <span className="flex space-x-3">
                         <FaEdit className="cursor-pointer  text-gray-500 hover:text-blue-500" />
                         <FaTrashAlt className="cursor-pointer text-gray-500 hover:text-red-500" />
                     </span>
                 </div>
-                <div className="flex items-center space-x-2 w-full mt-2">
-                    <span className="text-2xl">{task.title}</span>
-                </div>
+                <div className="flex items-center space-x-2 w-full mt-2">{task.title} </div>
             </div>
 
             {/* Body */}
@@ -43,7 +42,7 @@ export default function TaskItem({ task }) {
                             <td className="text-left p-1 w-3/4">{new Date(task.due_date).toDateString()}</td>
                         </tr>
                         <tr>
-                            <td className="text-left p-1 w-1/4">Description</td>
+                            <td className="text-left p-1 w-1/4 align-text-top">Description</td>
                             <td className="text-left p-1 w-3/4">{task.description}
                             </td>
                         </tr>

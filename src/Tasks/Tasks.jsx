@@ -6,6 +6,7 @@ import {
 import axios from "axios";
 import TaskItem from "./TaskItem";
 import { FaAdd, FaEdit, FaPlus, FaSearch, FaTrashAlt } from 'react-icons/fa';
+import NewTask from './NewTask';
 
 
 const fetchData = async () => {
@@ -26,10 +27,10 @@ export default function Tasks() {
 
     return (
         <div>
-            <div className="flex justify-between items-center w-full px-4  mb-7">
-                <div className="flex items-center space-x-3 ml-20 bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none px-4 py-2">
-                    <FaPlus className="cursor-pointer text-gray-800 text-2xl" />
-                    <span className="ml-1">Create A New Task</span>
+            <div className="flex justify-between items-start w-full px-4  mb-7 align-top ">
+                <div className="flex items-center space-x-3 ml-20 rounded-lg hover:bg-gray-200 focus:outline-none px-4 py-2" >
+                    <NewTask />
+
                 </div>
                 <div className="flex items-center space-x-3 mr-20">
                     <FaSearch className="cursor-pointer text-gray-800 text-2xl" />
