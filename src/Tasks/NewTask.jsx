@@ -1,20 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskForm from './TaskForm';
 import { FaPlus } from 'react-icons/fa';
 
-const NewTask = () => {
+const NewTask = ({ onSave }) => {
     const [showForm, setShowForm] = useState(false);
-
-    // const handleInputChange = (e) => {
-    //     setTask(e.target.value);
-    // };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     // Add logic to handle the new task submission
-    //     console.log('New Task:', task);
-    //     setTask('');
-    // };
 
     const onShowForm = () => {
         setShowForm(true);
@@ -22,14 +11,13 @@ const NewTask = () => {
 
     const cancelFormHandler = () => {
         console.log("cancelled");
-
         setShowForm(false);
-
     };
 
     const saveFormHandler = (enteredData) => {
         console.log("saved");
         setShowForm(false);
+        onSave();
     };
 
     return (

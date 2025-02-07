@@ -24,7 +24,6 @@ const TaskForm = ({ onCancelForm, onSaveForm }) => {
         },
     });
 
-
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -37,14 +36,11 @@ const TaskForm = ({ onCancelForm, onSaveForm }) => {
         formData['userid'] = 1;
         mutation.mutate(formData);
         onSaveForm();
-
     };
 
     const hideFormHandler = () => {
         onCancelForm();
     };
-
-
 
     return (
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">

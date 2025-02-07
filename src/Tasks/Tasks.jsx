@@ -7,6 +7,8 @@ import axios from "axios";
 import TaskItem from "./TaskItem";
 import { FaAdd, FaEdit, FaPlus, FaSearch, FaTrashAlt } from 'react-icons/fa';
 import NewTask from './NewTask';
+import Alert from './Alert';
+import { useState } from "react";
 
 
 const fetchData = async () => {
@@ -15,6 +17,7 @@ const fetchData = async () => {
 };
 
 export default function Tasks() {
+    const [alert, setAlert] = useState(null);
 
     const { data, isLoading, error } = useQuery({
         queryKey: ["todos"],
@@ -24,13 +27,21 @@ export default function Tasks() {
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
+    const showAlert = (message, type) => {
+        console.log("alert");
+        setAlert({ message, type });
+        setTimeout(() => setAlert(null), 1500);
+    };
 
     return (
         <div>
+
             <div className="flex justify-between items-start w-full px-4  mb-7 align-top ">
                 <div className="flex items-center space-x-3 ml-20 rounded-lg hover:bg-gray-200 focus:outline-none px-4 py-2" >
-                    <NewTask />
-
+                    <NewTask onSave={showAlert} />
+                </div>
+                <div>
+                    {alert && <Alert message={"Task saved successfully!"} type={"success"} onClose={() => setAlert(null)} />}
                 </div>
                 <div className="flex items-center space-x-3 mr-20">
                     <FaSearch className="cursor-pointer text-gray-800 text-2xl" />
