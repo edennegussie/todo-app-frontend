@@ -1,17 +1,20 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-
 const NavBar = () => {
-    const navigate = useNavigate(); // Hook for navigation
     const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0();
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (<nav className="bg-gray-800 p-4 min-h-20">
+            <div className="max-w-7xl mx-auto flex justify-between items-center">
+                <div className="text-white font-semibold text-xl">ToDo App</div>
+                <div>Loading...</div>
+            </div>
+        </nav>);
     }
+
     return (
-        <nav className="bg-gray-800 p-4">
+        <nav className="bg-gray-800 p-4 min-h-20 ">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <div className="text-white font-semibold text-xl">ToDo App</div>
 

@@ -10,6 +10,8 @@ import NewTask from './NewTask';
 import Alert from './Alert';
 import { useState } from "react";
 import NavBar from '../NavBar';
+import { Navigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const fetchData = async () => {
     const response = await axios.get(`${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/tasks`);
@@ -19,13 +21,24 @@ const fetchData = async () => {
 export default function Tasks() {
     const [alert, setAlert] = useState(null);
     const [filter, setFilter] = useState("");
+    const { isAuthenticated, isLoading } = useAuth0();
 
-    const { data, isLoading, error } = useQuery({
+    const { data, error } = useQuery({
         queryKey: ["tasks"],
         queryFn: fetchData,
     });
+    if (isLoading) {
+        return (<nav className="bg-gray-800 p-4 min-h-20">
+            <div className="max-w-7xl mx-auto flex justify-between items-center">
+                <div className="text-white font-semibold text-xl">ToDo App</div>
+                <div>Loading...</div>
+            </div>
+        </nav>);
+    }
+    if (!isAuthenticated) {
+        return <Navigate to="/login" />; // Redirect to login if not authenticated
+    }
 
-    if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
     const showAlert = (message, type) => {
