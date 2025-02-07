@@ -18,6 +18,7 @@ const fetchData = async () => {
 
 export default function Tasks() {
     const [alert, setAlert] = useState(null);
+    const [filter, setFilter] = useState("");
 
     const { data, isLoading, error } = useQuery({
         queryKey: ["tasks"],
@@ -33,6 +34,10 @@ export default function Tasks() {
         setTimeout(() => setAlert(null), 1500);
     };
 
+    const filteredTasks = data.filter((task) =>
+        task.title.toLowerCase().includes(filter.toLowerCase())
+    );
+
     return (
         <div>
 
@@ -45,14 +50,20 @@ export default function Tasks() {
                 </div>
                 <div className="flex items-center space-x-3 mr-20">
                     <FaSearch className="cursor-pointer text-gray-800 text-2xl" />
-                    <span className="ml-1">Search</span>
+                    <input
+                        type="text"
+                        placeholder="Search title..."
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                        className="p-2 border rounded"
+                    />
                 </div>
             </div>
             <hr />
             <h2 className="ml-20 mt-7 text-3xl">My Tasks</h2>
             <div className="flex flex-wrap justify-evenly gap-4 p-4 m-8 mt-2 pt-2">
                 {
-                    data?.map((d) => {
+                    filteredTasks?.map((d) => {
                         return <TaskItem key={d.id} task={d} />
                     })
                 }
