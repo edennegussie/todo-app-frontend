@@ -21,9 +21,9 @@ export default function TaskItem({ task }) {
                                     : "#86EFAC" // Green for COMPLETED
                         }}
                     >
-                        <option value="TODO" className="bg-white">TODO</option>
-                        <option value="IN_PROGRESS" className="bg-white">IN_PROGRESS</option>
-                        <option value="COMPLETED" className="bg-white ">COMPLETED</option>
+                        <option value="TODO" className="bg-white">To Do</option>
+                        <option value="IN_PROGRESS" className="bg-white">In Progress</option>
+                        <option value="COMPLETED" className="bg-white ">Completed</option>
                     </select>
                     <span className="flex space-x-3">
                         <FaEdit className="cursor-pointer  text-gray-500 hover:text-blue-500" />

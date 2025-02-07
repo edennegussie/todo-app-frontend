@@ -20,7 +20,7 @@ export default function Tasks() {
     const [alert, setAlert] = useState(null);
 
     const { data, isLoading, error } = useQuery({
-        queryKey: ["todos"],
+        queryKey: ["tasks"],
         queryFn: fetchData,
     });
 
