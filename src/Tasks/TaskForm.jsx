@@ -1,5 +1,12 @@
 import { useState } from "react";
 import { FaSave, FaTimes } from "react-icons/fa";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+
+const postData = async (newData) => {
+    const response = await axios.post(`${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/tasks`, newData);
+    return response.data;
+};
 
 const TaskForm = ({ onCancelForm, onSaveForm }) => {
     const [formData, setFormData] = useState({
@@ -7,6 +14,16 @@ const TaskForm = ({ onCancelForm, onSaveForm }) => {
         description: "",
         dueDate: "",
     });
+    const queryClient = useQueryClient();
+
+    const mutation = useMutation({
+        mutationFn: postData,
+        onSuccess: () => {
+            // Invalidate and refetch data to update UI
+            queryClient.invalidateQueries({ queryKey: ["tasks"] });
+        },
+    });
+
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,6 +33,9 @@ const TaskForm = ({ onCancelForm, onSaveForm }) => {
         e.preventDefault();
         console.log("Task Submitted:", formData);
         // Add logic to handle form submission
+        formData['status'] = "TODO";
+        formData['userid'] = 1;
+        mutation.mutate(formData);
         onSaveForm();
 
     };
@@ -23,6 +43,8 @@ const TaskForm = ({ onCancelForm, onSaveForm }) => {
     const hideFormHandler = () => {
         onCancelForm();
     };
+
+
 
     return (
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
