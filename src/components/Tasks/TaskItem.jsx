@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 export default function TaskItem({ task }) {
@@ -26,8 +24,8 @@ export default function TaskItem({ task }) {
                         <option value="COMPLETED" className="bg-white ">Completed</option>
                     </select>
                     <span className="flex space-x-3">
-                        <FaEdit className="cursor-pointer  text-gray-500 hover:text-blue-500" />
-                        <FaTrashAlt className="cursor-pointer text-gray-500 hover:text-red-500" />
+                        <FaEdit name="Edit" className="cursor-pointer  text-gray-500 hover:text-blue-500" />
+                        <FaTrashAlt name="Delete" className="cursor-pointer text-gray-500 hover:text-red-500" />
                     </span>
                 </div>
                 <div className="flex items-center space-x-2 w-full mt-2">{task.title} </div>

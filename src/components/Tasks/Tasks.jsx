@@ -1,8 +1,4 @@
-import {
-    QueryClient,
-    QueryClientProvider,
-    useQuery,
-} from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query';
 import axios from "axios";
 import TaskItem from "./TaskItem";
 import { FaAdd, FaEdit, FaPlus, FaSearch, FaTrashAlt } from 'react-icons/fa';
