@@ -20,7 +20,7 @@ const NavBar = () => {
 
                 {isAuthenticated ? (
                     <span className='flex'>
-                        <span className='text-right justify-center'> <p className='text-white text-sm'>{user.name}</p>
+                        <span className='text-right justify-center'> <p className='text-white text-sm'>{user.nickname}</p>
                             <p className='text-white text-sm'>{user.email}</p>
                         </span>
                         <img src={user.picture} alt={user.name} className="w-10 h-10 rounded-full mb-2 mr-10" />
@@ -39,14 +39,6 @@ const NavBar = () => {
                         Login
                     </button>
                 )}
-                {/* {isAuthenticated && (
-                    <div className="p-4 bg-gray-100 rounded shadow-md max-w-sm mx-auto">
-                        <h2 className="text-xl font-bold mb-2">User Profile</h2>
-                        <img src={user.picture} alt={user.name} className="w-16 h-16 rounded-full mb-2" />
-                        <p><strong>Name:</strong> {user.name}</p>
-                        <p><strong>Email:</strong> {user.email}</p>
-                    </div>
-                )} */}
             </div>
         </nav>
     );

@@ -21,7 +21,7 @@ const fetchData = async () => {
 export default function Tasks() {
     const [alert, setAlert] = useState(null);
     const [filter, setFilter] = useState("");
-    const { isAuthenticated, isLoading } = useAuth0();
+    const { isAuthenticated, isLoading, user } = useAuth0();
 
     const { data, error } = useQuery({
         queryKey: ["tasks"],
@@ -33,12 +33,13 @@ export default function Tasks() {
                 <div className="text-white font-semibold text-xl">ToDo App</div>
                 <div>Loading...</div>
             </div>
-        </nav>);
+        </nav>);; // Show loading indicator while checking authentication status
     }
     if (!isAuthenticated) {
         return <Navigate to="/login" />; // Redirect to login if not authenticated
     }
 
+    if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
     const showAlert = (message, type) => {
@@ -48,7 +49,8 @@ export default function Tasks() {
     };
 
     const filteredTasks = data.filter((task) =>
-        task.title.toLowerCase().includes(filter.toLowerCase())
+        task.title.toLowerCase().includes(filter.toLowerCase()) &&
+        task.user_email?.toLowerCase().includes(user?.email?.toLowerCase())
     );
 
     return (

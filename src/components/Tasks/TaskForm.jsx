@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaSave, FaTimes } from "react-icons/fa";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const postData = async (newData) => {
     const response = await axios.post(`${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/tasks`, newData);
@@ -9,6 +10,8 @@ const postData = async (newData) => {
 };
 
 const TaskForm = ({ onCancelForm, onSaveForm }) => {
+    const { user } = useAuth0();
+
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -22,6 +25,9 @@ const TaskForm = ({ onCancelForm, onSaveForm }) => {
             // Invalidate and refetch data to update UI
             queryClient.invalidateQueries({ queryKey: ["tasks"] });
         },
+        onError: (error) => {
+            console.error("Error adding task:", error);
+        }
     });
 
     const handleChange = (e) => {
@@ -33,7 +39,7 @@ const TaskForm = ({ onCancelForm, onSaveForm }) => {
         console.log("Task Submitted:", formData);
         // Add logic to handle form submission
         formData['status'] = "TODO";
-        formData['userid'] = 1;
+        formData['userEmail'] = user.email;
         mutation.mutate(formData);
         onSaveForm();
     };
