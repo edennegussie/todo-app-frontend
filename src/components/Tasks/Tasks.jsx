@@ -35,7 +35,6 @@ export default function Tasks() {
         return <Navigate to="/login" />; // Redirect to login if not authenticated
     }
 
-    if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
     const showAlert = (message, type) => {

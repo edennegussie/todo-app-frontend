@@ -1,7 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import TaskItem from "./TaskItem";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import userEvent from "@testing-library/user-event";
 
 describe("TaskItem Component", () => {
     const mockTask = {
@@ -27,7 +25,7 @@ describe("TaskItem Component", () => {
         render(<TaskItem task={mockTask} />);
 
         // Get the select dropdown
-        const selectElement = screen.getByRole("combobox"); // 'combobox' is the role for <select>
+        const selectElement = screen.getByRole("combobox");
         expect(selectElement).toBeInTheDocument();
 
         // Check if the dropdown contains the three options
